@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BombParty PMO - Documentation Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--citron:#EAE753;--navy:#0F3053;--green:#3DB88B;--amber:#F0B63C;--red:#E15D5D;--charcoal:#2C2C2C;--ice:#EEF8FF;--soft:#F7F9FC;--purple:#6454C0;--teal:#008DA6;--line:rgba(15,48,83,.10);--line2:rgba(15,48,83,.06)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',Arial,sans-serif;color:var(--charcoal);background:var(--soft);line-height:1.55;font-size:14px;-webkit-font-smoothing:antialiased}
+.nav{position:sticky;top:0;z-index:100;background:rgba(247,249,252,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--line);padding:.7rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-left,.nav-right{display:flex;align-items:center;gap:.8rem}.nav-logo{font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);background:rgba(234,231,83,.42);border:1px solid rgba(234,231,83,.65);padding:4px 10px;border-radius:100px}.nav-title{font-size:.78rem;font-weight:500;color:var(--navy);opacity:.62}
+.nav-pill{display:flex;align-items:center;gap:5px;font-size:.55rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);opacity:.58;background:#fff;border:1px solid var(--line);padding:4px 10px;border-radius:100px}.dot{width:5px;height:5px;border-radius:50%;background:var(--green)}.nav-date{font-size:.58rem;color:var(--navy);opacity:.4;letter-spacing:.04em;text-transform:uppercase}.nav-av{width:26px;height:26px;border-radius:50%;background:var(--navy);color:var(--citron);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:800}
+.tabs{position:sticky;top:49px;z-index:90;background:var(--soft);border-bottom:1px solid var(--line);padding:0 2rem;display:flex;overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab-btn{background:none;border:none;border-bottom:2px solid transparent;padding:.9rem 1.1rem;font-family:inherit;font-size:.6rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);opacity:.38;cursor:pointer;white-space:nowrap}.tab-btn:hover{opacity:.66}.tab-btn.active{opacity:1;border-bottom-color:var(--navy)}.tab-num{opacity:.5;margin-right:4px}
+.main{max-width:1140px;margin:0 auto;padding:2.3rem 2rem 4rem}.pane{display:none}.pane.active{display:block}
+.pmo-hero{background:var(--navy);color:#fff;padding:1.75rem 1.85rem;border-radius:14px;margin-bottom:1.5rem;position:relative;overflow:hidden}.pmo-hero::before{content:'';position:absolute;top:-55%;right:-10%;width:420px;height:420px;background:radial-gradient(circle,rgba(234,231,83,.12) 0%,transparent 62%);pointer-events:none}.eyebrow{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--citron);margin-bottom:.45rem;font-weight:800}.pmo-hero h1{font-size:1.48rem;font-weight:700;line-height:1.2;margin-bottom:.35rem;color:#fff}.pmo-hero h1 .acc{color:var(--citron)}.pmo-hero p{color:rgba(255,255,255,.6);font-size:.78rem;max-width:700px}.hero-actions{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.25rem;position:relative}
+.page-header{margin-bottom:1.45rem}.page-header h2{font-size:1.35rem;font-weight:750;color:var(--navy);letter-spacing:-.02em;margin-bottom:.35rem}.page-header p{font-size:.8rem;color:var(--navy);opacity:.52;line-height:1.6}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem}.kpi{background:#fff;border:1px solid var(--line);border-radius:12px;padding:1.15rem 1.25rem;min-height:108px}.kpi-label{font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);opacity:.42;margin-bottom:.55rem}.kpi-value{font-size:2rem;font-weight:750;color:var(--navy);line-height:1}.kpi-sub{font-size:.65rem;color:var(--navy);opacity:.38;margin-top:.45rem}
+.section-block{background:#fff;border:1px solid var(--line);border-radius:14px;margin-bottom:1.25rem;overflow:hidden}.section-head{display:flex;align-items:flex-start;gap:1rem;padding:1.35rem 1.5rem 1.1rem;border-bottom:1px solid var(--line2)}.section-icon{width:44px;height:44px;flex-shrink:0;background:var(--ice);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--navy);font-weight:800}.section-head-text h3{font-size:.86rem;font-weight:750;color:var(--navy);margin-bottom:.18rem}.section-head-text span{font-size:.72rem;color:var(--navy);opacity:.46}.section-actions{margin-left:auto;display:flex;gap:.55rem;align-items:center}.section-body{padding:1.35rem 1.5rem}.section-body.no-pad{padding:0}
+.btn{display:inline-flex;align-items:center;gap:5px;padding:.6rem 1.1rem;border-radius:8px;border:none;font-family:inherit;font-size:.74rem;font-weight:700;cursor:pointer;transition:opacity .15s;white-space:nowrap}.btn:hover{opacity:.85}.btn-navy{background:var(--navy);color:#fff}.btn-outline{background:#fff;color:var(--navy);border:1.5px solid rgba(15,48,83,.2)}.btn-soft{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.2)}.btn-sm{padding:.45rem .82rem;font-size:.68rem}
+.alert{border-left:3px solid var(--navy);background:rgba(15,48,83,.04);border-radius:0 8px 8px 0;padding:.75rem 1rem;font-size:.78rem;color:var(--navy);opacity:.78;margin-bottom:1rem;line-height:1.6}.alert.amber{border-color:var(--amber);background:rgba(240,182,60,.08);color:#78350F;opacity:1}.alert.red{border-color:var(--red);background:rgba(225,93,93,.07);color:#B91C1C;opacity:1}.alert.green{border-color:var(--green);background:rgba(61,184,139,.07);color:#065F46;opacity:1}
+.tbl-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:840px}thead th{padding:.72rem 1rem;text-align:left;font-size:.58rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);opacity:.46;background:var(--soft);border-bottom:1px solid var(--line)}tbody tr{border-bottom:1px solid var(--line2)}tbody tr:hover{background:rgba(15,48,83,.02)}tbody tr:last-child{border-bottom:none}td{padding:.82rem 1rem;font-size:.79rem;vertical-align:top;line-height:1.55}.td-bold{font-weight:700;color:var(--navy)}.td-muted{color:var(--navy);opacity:.48;font-size:.73rem}
+.badge{display:inline-flex;align-items:center;padding:3px 10px;border-radius:100px;font-size:.62rem;font-weight:700;letter-spacing:.03em;white-space:nowrap}.badge-blue{background:rgba(15,48,83,.08);color:var(--navy);border:1px solid var(--line)}.badge-green{background:rgba(61,184,139,.12);color:#065F46;border:1px solid rgba(61,184,139,.25)}.badge-red{background:rgba(225,93,93,.12);color:#B91C1C;border:1px solid rgba(225,93,93,.25)}.badge-amber{background:rgba(240,182,60,.15);color:#92400E;border:1px solid rgba(240,182,60,.3)}.badge-purple{background:rgba(100,84,192,.10);color:#403294;border:1px solid rgba(100,84,192,.2)}.badge-teal{background:rgba(0,141,166,.10);color:#006C80;border:1px solid rgba(0,141,166,.2)}.badge-gray{background:rgba(15,48,83,.05);color:#5E6C84;border:1px solid var(--line)}
+.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem}.field{display:flex;flex-direction:column;gap:.35rem;margin-bottom:.9rem}.field.full{grid-column:1/-1}.field label{font-size:.58rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--navy);opacity:.55}.field input,.field select,.field textarea{font-family:inherit;font-size:.8rem;color:var(--charcoal);background:#fff;border:1.5px solid rgba(15,48,83,.15);border-radius:9px;padding:.58rem .82rem;transition:border-color .18s;outline:none;width:100%}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--navy)}.field textarea{resize:vertical;min-height:74px}
+.modal-overlay{position:fixed;inset:0;background:rgba(15,48,83,.35);display:none;align-items:center;justify-content:center;z-index:999;padding:1.5rem}.modal{background:#fff;border-radius:16px;border:1px solid var(--line);width:100%;max-width:720px;max-height:90vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(15,48,83,.15)}.modal-hd{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.5rem;border-bottom:1px solid var(--line2)}.modal-title{font-size:.9rem;font-weight:800;color:var(--navy)}.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:#5E6C84;line-height:1;padding:2px 6px;border-radius:4px;opacity:.55}.modal-close:hover{opacity:1;background:var(--soft)}.modal-body{padding:1.4rem 1.5rem;overflow:auto}.modal-ft{padding:.95rem 1.5rem;border-top:1px solid var(--line2);display:flex;justify-content:flex-end;gap:.6rem;background:var(--soft)}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--navy);color:#fff;padding:.75rem 1rem;border-radius:10px;font-size:.75rem;font-weight:700;opacity:0;pointer-events:none;transition:all .2s;z-index:1200}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.cloud-status{position:fixed;right:18px;bottom:18px;z-index:80;background:#fff;border:1px solid var(--line);border-radius:100px;padding:6px 11px;display:flex;align-items:center;gap:6px;font-size:.58rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--navy);box-shadow:0 8px 24px rgba(15,48,83,.08)}.cloud-status .dot{background:var(--amber)}.cloud-status.ok .dot{background:var(--green)}.cloud-status.bad .dot{background:var(--red)}
+.row-tools{display:flex;gap:5px;white-space:nowrap}.tool-btn{border:1px solid rgba(15,48,83,.18);background:#fff;color:var(--navy);border-radius:7px;padding:4px 8px;font-family:inherit;font-size:.62rem;font-weight:800;cursor:pointer}.tool-btn:hover{background:var(--soft)}.tool-btn.danger{color:#B91C1C;border-color:rgba(225,93,93,.28);background:rgba(225,93,93,.06)}
+.builder-grid{display:grid;grid-template-columns:300px 1fr;gap:1.2rem}.builder-preview{width:100%;min-height:360px;font-family:Consolas,'Courier New',monospace;font-size:.78rem;line-height:1.55;color:var(--navy);background:var(--soft);border:1.5px solid rgba(15,48,83,.15);border-radius:10px;padding:1rem;resize:vertical;outline:none}.builder-preview:focus{border-color:var(--navy);background:#fff}
+@media(max-width:800px){.nav{padding:.7rem 1rem}.nav-right{display:none}.tabs{top:48px;padding:0 1rem}.main{padding:1.5rem 1rem 3rem}.g2,.g4,.form-grid{grid-template-columns:1fr}.section-head{flex-wrap:wrap}.section-actions{width:100%;margin-left:0}.btn{justify-content:center}.pmo-hero{padding:1.4rem}}
+@media(max-width:800px){.builder-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-left"><div class="nav-logo">BombParty PMO</div><div class="nav-title">Documentation Hub</div></div>
+  <div class="nav-right"><div class="nav-pill"><span class="dot"></span> Library Active</div><div class="nav-date" id="todayLabel"></div><div class="nav-av">PMO</div></div>
+</nav>
+<div class="tabs">
+  <button class="tab-btn active" onclick="showPane('dashboard',this)"><span class="tab-num">01</span> Dashboard</button>
+  <button class="tab-btn" onclick="showPane('templates',this)"><span class="tab-num">02</span> Templates</button>
+  <button class="tab-btn" onclick="showPane('sops',this)"><span class="tab-num">03</span> SOPs</button>
+  <button class="tab-btn" onclick="showPane('docs',this)"><span class="tab-num">04</span> Documentation</button>
+  <button class="tab-btn" onclick="showPane('training',this)"><span class="tab-num">05</span> Training</button>
+  <button class="tab-btn" onclick="showPane('standards',this)"><span class="tab-num">06</span> Standards</button>
+  <button class="tab-btn" onclick="showPane('reviews',this)"><span class="tab-num">07</span> Reviews</button>
+</div>
+
+<main class="main">
+  <section id="dashboard" class="pane active">
+    <div class="pmo-hero">
+      <div class="eyebrow">PMO Documentation</div>
+      <h1>One PMO library for <span class="acc">templates, SOPs, guides, standards, and training.</span></h1>
+      <p>Keep reusable PMO documentation organized, owned, current, and easy to find before teams reinvent the same artifact again.</p>
+      <div class="hero-actions">
+        <button class="btn btn-soft" onclick="openModal('templateItem')">+ Add Template</button>
+        <button class="btn btn-soft" onclick="openModal('sopItem')">+ Add SOP</button>
+        <button class="btn btn-soft" onclick="openModal('trainingItem')">+ Add Training</button>
+      </div>
+    </div>
+    <div class="g4" id="kpis"></div>
+    <div class="g2" style="margin-top:1.15rem">
+      <div class="section-block">
+        <div class="section-head"><div class="section-icon">!</div><div class="section-head-text"><h3>Library Attention</h3><span>Documentation that needs ownership or refresh.</span></div></div>
+        <div class="section-body" id="attentionList"></div>
+      </div>
+      <div class="section-block">
+        <div class="section-head"><div class="section-icon">OK</div><div class="section-head-text"><h3>Documentation Cadence</h3><span>Suggested rhythm for keeping the PMO library healthy.</span></div></div>
+        <div class="section-body">
+          <div class="alert green"><strong>Weekly:</strong> Add new artifacts created during delivery and link active templates.</div>
+          <div class="alert"><strong>Monthly:</strong> Review stale items, owners, broken links, and draft documents.</div>
+          <div class="alert amber"><strong>Quarterly:</strong> Refresh SOPs, training guides, standards, and required templates.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="templates" class="pane">
+    <div class="page-header"><h2>Templates</h2><p>Reusable PMO templates for intake, charters, status, RAID, closure, and governance.</p></div>
+    <div class="section-block">
+      <div class="section-head">
+        <div class="section-icon">+</div>
+        <div class="section-head-text"><h3>Template Builder</h3><span>Generate a PMO-ready template, edit it, then save it into this hub.</span></div>
+        <div class="section-actions"><button class="btn btn-navy btn-sm" onclick="saveGeneratedTemplate()">Save Generated Template</button></div>
+      </div>
+      <div class="section-body">
+        <div class="builder-grid">
+          <div>
+            <div class="field"><label>Template Type</label><select id="builderType"><option>Project Charter</option><option>Weekly Status Report</option><option>RAID Log</option><option>Meeting Notes</option><option>Decision Log</option><option>Change Request</option><option>Project Closure</option><option>Lessons Learned</option><option>Training Guide</option><option>Custom PMO Document</option></select></div>
+            <div class="field"><label>Template Name</label><input id="builderName" value="New PMO Template"></div>
+            <div class="field"><label>Audience</label><input id="builderAudience" value="Project Managers"></div>
+            <div class="field"><label>Owner</label><input id="builderOwner" value="PMO Team"></div>
+            <div class="field"><label>Include Sections</label><select id="builderDepth"><option>Standard</option><option>Detailed</option><option>Executive</option></select></div>
+            <button class="btn btn-outline" onclick="generateTemplate()">Generate Template</button>
+          </div>
+          <div>
+            <textarea id="builderPreview" class="builder-preview"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">T</div><div class="section-head-text"><h3>Template Library</h3><span>Reusable starting points for PMO workflows.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="openModal('templateItem')">Add Template</button></div></div><div class="section-body no-pad"><div class="tbl-wrap"><table><thead><tr><th>Template</th><th>Category</th><th>Owner</th><th>Status</th><th>Version</th><th>Location</th><th>Last Updated</th><th>Actions</th></tr></thead><tbody id="templateRows"></tbody></table></div></div></div>
+  </section>
+
+  <section id="sops" class="pane">
+    <div class="page-header"><h2>SOPs</h2><p>Standard operating procedures for how the PMO runs common processes.</p></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">+</div><div class="section-head-text"><h3>SOP Builder</h3><span>Generate an SOP, edit the draft, then save it into the SOP register.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="saveGeneratedDoc('sop')">Save Generated SOP</button></div></div><div class="section-body"><div class="builder-grid"><div><div class="field"><label>SOP Type</label><select id="sopBuilderType"><option>Project Intake SOP</option><option>Change Control SOP</option><option>Status Reporting SOP</option><option>RAID Management SOP</option><option>Project Closure SOP</option><option>Custom SOP</option></select></div><div class="field"><label>SOP Name</label><input id="sopBuilderName" value="New PMO SOP"></div><div class="field"><label>Audience</label><input id="sopBuilderAudience" value="PMO Team"></div><div class="field"><label>Owner</label><input id="sopBuilderOwner" value="PMO Team"></div><div class="field"><label>Include Sections</label><select id="sopBuilderDepth"><option>Standard</option><option>Detailed</option><option>Executive</option></select></div><button class="btn btn-outline" onclick="generateDoc('sop')">Generate SOP</button></div><div><textarea id="sopBuilderPreview" class="builder-preview"></textarea></div></div></div></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">S</div><div class="section-head-text"><h3>SOP Register</h3><span>Process guidance with owner, review status, and version.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="openModal('sopItem')">Add SOP</button></div></div><div class="section-body no-pad"><div class="tbl-wrap"><table><thead><tr><th>SOP</th><th>Process Area</th><th>Owner</th><th>Status</th><th>Version</th><th>Review Cycle</th><th>Location</th><th>Actions</th></tr></thead><tbody id="sopRows"></tbody></table></div></div></div>
+  </section>
+
+  <section id="docs" class="pane">
+    <div class="page-header"><h2>Documentation</h2><p>Core reference documents, playbooks, governance notes, and delivery documentation.</p></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">+</div><div class="section-head-text"><h3>Documentation Builder</h3><span>Generate playbooks, guides, references, FAQs, and process docs.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="saveGeneratedDoc('doc')">Save Generated Document</button></div></div><div class="section-body"><div class="builder-grid"><div><div class="field"><label>Document Type</label><select id="docBuilderType"><option>PMO Playbook</option><option>Process Guide</option><option>Reference Document</option><option>FAQ</option><option>Governance Overview</option><option>Custom Documentation</option></select></div><div class="field"><label>Document Name</label><input id="docBuilderName" value="New PMO Document"></div><div class="field"><label>Audience</label><input id="docBuilderAudience" value="Project Managers"></div><div class="field"><label>Owner</label><input id="docBuilderOwner" value="PMO Team"></div><div class="field"><label>Include Sections</label><select id="docBuilderDepth"><option>Standard</option><option>Detailed</option><option>Executive</option></select></div><button class="btn btn-outline" onclick="generateDoc('doc')">Generate Document</button></div><div><textarea id="docBuilderPreview" class="builder-preview"></textarea></div></div></div></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">D</div><div class="section-head-text"><h3>Documentation Register</h3><span>Reference material for PMs, sponsors, and delivery partners.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="openModal('docItem')">Add Document</button></div></div><div class="section-body no-pad"><div class="tbl-wrap"><table><thead><tr><th>Document</th><th>Type</th><th>Audience</th><th>Owner</th><th>Status</th><th>Location</th><th>Updated</th><th>Actions</th></tr></thead><tbody id="docRows"></tbody></table></div></div></div>
+  </section>
+
+  <section id="training" class="pane">
+    <div class="page-header"><h2>Training Guides</h2><p>Onboarding, tool training, PMO process education, and role-based guides.</p></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">+</div><div class="section-head-text"><h3>Training Builder</h3><span>Generate training guides, job aids, workshops, and checklists.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="saveGeneratedDoc('training')">Save Generated Training</button></div></div><div class="section-body"><div class="builder-grid"><div><div class="field"><label>Training Type</label><select id="trainingBuilderType"><option>Training Guide</option><option>Job Aid</option><option>Workshop Outline</option><option>Quick Reference</option><option>Checklist</option><option>Custom Training</option></select></div><div class="field"><label>Guide Name</label><input id="trainingBuilderName" value="New PMO Training Guide"></div><div class="field"><label>Audience</label><input id="trainingBuilderAudience" value="Project Managers"></div><div class="field"><label>Owner</label><input id="trainingBuilderOwner" value="PMO Team"></div><div class="field"><label>Include Sections</label><select id="trainingBuilderDepth"><option>Standard</option><option>Detailed</option><option>Executive</option></select></div><button class="btn btn-outline" onclick="generateDoc('training')">Generate Training</button></div><div><textarea id="trainingBuilderPreview" class="builder-preview"></textarea></div></div></div></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">G</div><div class="section-head-text"><h3>Training Library</h3><span>Guides and sessions that help teams use PMO processes well.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="openModal('trainingItem')">Add Training</button></div></div><div class="section-body no-pad"><div class="tbl-wrap"><table><thead><tr><th>Guide</th><th>Format</th><th>Audience</th><th>Owner</th><th>Status</th><th>Duration</th><th>Location</th><th>Actions</th></tr></thead><tbody id="trainingRows"></tbody></table></div></div></div>
+  </section>
+
+  <section id="standards" class="pane">
+    <div class="page-header"><h2>Standards</h2><p>Naming conventions, document requirements, required fields, and delivery standards.</p></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">+</div><div class="section-head-text"><h3>Standards Builder</h3><span>Generate PMO standards for naming, required fields, artifacts, and governance rules.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="saveGeneratedDoc('standard')">Save Generated Standard</button></div></div><div class="section-body"><div class="builder-grid"><div><div class="field"><label>Standard Type</label><select id="standardBuilderType"><option>Naming Standard</option><option>Required Fields Standard</option><option>Artifact Standard</option><option>Review Standard</option><option>Governance Standard</option><option>Custom Standard</option></select></div><div class="field"><label>Standard Name</label><input id="standardBuilderName" value="New PMO Standard"></div><div class="field"><label>Audience</label><input id="standardBuilderAudience" value="PMO Team"></div><div class="field"><label>Owner</label><input id="standardBuilderOwner" value="PMO Team"></div><div class="field"><label>Include Sections</label><select id="standardBuilderDepth"><option>Standard</option><option>Detailed</option><option>Executive</option></select></div><button class="btn btn-outline" onclick="generateDoc('standard')">Generate Standard</button></div><div><textarea id="standardBuilderPreview" class="builder-preview"></textarea></div></div></div></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">#</div><div class="section-head-text"><h3>Standards Register</h3><span>Rules that keep PMO artifacts consistent across teams.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="openModal('standardItem')">Add Standard</button></div></div><div class="section-body no-pad"><div class="tbl-wrap"><table><thead><tr><th>Standard</th><th>Area</th><th>Requirement</th><th>Owner</th><th>Status</th><th>Effective Date</th><th>Actions</th></tr></thead><tbody id="standardRows"></tbody></table></div></div></div>
+  </section>
+
+  <section id="reviews" class="pane">
+    <div class="page-header"><h2>Review Queue</h2><p>Documentation items due for refresh, approval, archival, or ownership update.</p></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">+</div><div class="section-head-text"><h3>Review Builder</h3><span>Generate review plans for refresh, approval, archive, and ownership work.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="saveGeneratedDoc('review')">Save Generated Review</button></div></div><div class="section-body"><div class="builder-grid"><div><div class="field"><label>Review Type</label><select id="reviewBuilderType"><option>Refresh Review</option><option>Approval Review</option><option>Archive Review</option><option>Ownership Review</option><option>Quality Review</option><option>Custom Review</option></select></div><div class="field"><label>Review Item</label><input id="reviewBuilderName" value="New Documentation Review"></div><div class="field"><label>Audience</label><input id="reviewBuilderAudience" value="PMO Team"></div><div class="field"><label>Owner</label><input id="reviewBuilderOwner" value="PMO Team"></div><div class="field"><label>Include Sections</label><select id="reviewBuilderDepth"><option>Standard</option><option>Detailed</option><option>Executive</option></select></div><button class="btn btn-outline" onclick="generateDoc('review')">Generate Review Plan</button></div><div><textarea id="reviewBuilderPreview" class="builder-preview"></textarea></div></div></div></div>
+    <div class="section-block"><div class="section-head"><div class="section-icon">R</div><div class="section-head-text"><h3>Review Tracker</h3><span>Keep the library current and trustworthy.</span></div><div class="section-actions"><button class="btn btn-navy btn-sm" onclick="openModal('reviewItem')">Add Review</button></div></div><div class="section-body no-pad"><div class="tbl-wrap"><table><thead><tr><th>Item</th><th>Review Type</th><th>Owner</th><th>Due</th><th>Status</th><th>Notes</th><th>Actions</th></tr></thead><tbody id="reviewRows"></tbody></table></div></div></div>
+  </section>
+</main>
+
+<div class="modal-overlay" id="dataModal">
+  <div class="modal">
+    <div class="modal-hd"><div class="modal-title" id="modalTitle">Add Entry</div><button class="modal-close" onclick="closeModal()">x</button></div>
+    <div class="modal-body"><div class="form-grid" id="modalFields"></div></div>
+    <div class="modal-ft"><button class="btn btn-outline" onclick="closeModal()">Cancel</button><button class="btn btn-navy" onclick="saveModal()">Save Entry</button></div>
+  </div>
+</div>
+<div class="toast" id="toast">Saved</div>
+<div class="cloud-status bad" id="cloudStatus"><span class="dot"></span><span>Cloud not connected</span></div>
+
+<script>
+const API_BASE=window.PMO_DOCS_API||'https://YOUR-DOCUMENTATION-WORKER.YOUR-SUBDOMAIN.workers.dev';
+const REMOTE_ENABLED=!API_BASE.includes('YOUR-DOCUMENTATION-WORKER');
+let activeForm='';
+let editingIndex=-1;
+let data={
+  templates:[
+    {name:'Project Charter Template',category:'Initiation',owner:'PMO Director',status:'Active',version:'2.1',location:'Confluence / PMO Templates',updated:'Apr 18, 2026'},
+    {name:'Weekly Status Report Template',category:'Reporting',owner:'PMO Analyst',status:'Active',version:'1.4',location:'Confluence / Reporting',updated:'Apr 25, 2026'},
+    {name:'Project Closure Checklist',category:'Closure',owner:'PMO Analyst',status:'Needs Review',version:'1.0',location:'Confluence / Closure',updated:'Feb 18, 2026'}
+  ],
+  sops:[
+    {name:'Project Intake Triage SOP',area:'Intake',owner:'PMO Governance Lead',status:'Active',version:'1.3',cycle:'Quarterly',location:'Confluence / SOPs'},
+    {name:'Change Control SOP',area:'Governance',owner:'PMO Director',status:'Active',version:'2.0',cycle:'Semiannual',location:'Confluence / Governance'},
+    {name:'Project Closure SOP',area:'Closure',owner:'PMO Analyst',status:'Draft',version:'0.8',cycle:'Quarterly',location:'Confluence / Drafts'}
+  ],
+  docs:[
+    {name:'PMO Operating Model',type:'Playbook',audience:'PMO Team',owner:'PMO Director',status:'Active',location:'Confluence / PMO Home',updated:'Mar 29, 2026'},
+    {name:'Portfolio Governance Overview',type:'Reference',audience:'Sponsors',owner:'PMO Governance Lead',status:'Active',location:'Confluence / Governance',updated:'Apr 12, 2026'},
+    {name:'Benefits Tracking Guide',type:'Guide',audience:'Project Managers',owner:'PMO Analyst',status:'Needs Update',location:'Confluence / Benefits',updated:'Jan 31, 2026'}
+  ],
+  training:[
+    {name:'PMO Intake Process Training',format:'Guide',audience:'Requestors',owner:'PMO Analyst',status:'Active',duration:'20 min',location:'Confluence / Training'},
+    {name:'Project Status Reporting Walkthrough',format:'Video',audience:'Project Managers',owner:'PMO Lead',status:'Active',duration:'12 min',location:'SharePoint / Training'},
+    {name:'RAID Log Best Practices',format:'Job Aid',audience:'Project Managers',owner:'PMO Governance Lead',status:'Draft',duration:'8 min',location:'Confluence / Training'}
+  ],
+  standards:[
+    {name:'PMO Document Naming Convention',area:'Documentation',requirement:'Use PMO-[Artifact]-[Project]-[YYYYMMDD]',owner:'PMO Director',status:'Active',effective:'Apr 1, 2026'},
+    {name:'Required Status Report Fields',area:'Reporting',requirement:'Health, milestones, risks, issues, decisions, next steps',owner:'PMO Analyst',status:'Active',effective:'Mar 15, 2026'},
+    {name:'Template Versioning Standard',area:'Templates',requirement:'Major.minor version with owner and last review date',owner:'PMO Governance Lead',status:'Active',effective:'Mar 20, 2026'}
+  ],
+  reviews:[
+    {item:'Project Closure Checklist',type:'Refresh',owner:'PMO Analyst',due:'May 24, 2026',status:'Open',notes:'Add support handoff and benefits validation steps'},
+    {item:'Benefits Tracking Guide',type:'Update',owner:'PMO Analyst',due:'May 31, 2026',status:'Open',notes:'Align with new KPI language'},
+    {item:'Project Closure SOP',type:'Approval',owner:'PMO Director',due:'Jun 7, 2026',status:'In Review',notes:'Waiting on final closure checklist update'}
+  ]
+};
+const forms={
+  templateItem:{title:'Add Template',target:'templates',fields:[['name','Template Name'],['category','Category','select','Initiation|Planning|Reporting|Governance|Delivery|Closure|Training|Other'],['owner','Owner'],['status','Status','select','Active|Draft|Needs Review|Retired'],['version','Version'],['location','Location / Link','textarea'],['updated','Last Updated'],['content','Template Content','textarea']]},
+  sopItem:{title:'Add SOP',target:'sops',fields:[['name','SOP Name'],['area','Process Area','select','Intake|Governance|Delivery|Reporting|Closure|Compliance|Other'],['owner','Owner'],['status','Status','select','Active|Draft|Needs Review|Retired'],['version','Version'],['cycle','Review Cycle'],['location','Location / Link','textarea'],['content','SOP Content','textarea']]},
+  docItem:{title:'Add Documentation',target:'docs',fields:[['name','Document Name'],['type','Type','select','Playbook|Reference|Guide|Process Doc|FAQ|Other'],['audience','Audience'],['owner','Owner'],['status','Status','select','Active|Draft|Needs Update|Retired'],['location','Location / Link','textarea'],['updated','Last Updated'],['content','Document Content','textarea']]},
+  trainingItem:{title:'Add Training Guide',target:'training',fields:[['name','Guide Name'],['format','Format','select','Guide|Video|Job Aid|Deck|Checklist|Workshop'],['audience','Audience'],['owner','Owner'],['status','Status','select','Active|Draft|Needs Update|Retired'],['duration','Duration'],['location','Location / Link','textarea'],['content','Training Content','textarea']]},
+  standardItem:{title:'Add Standard',target:'standards',fields:[['name','Standard Name'],['area','Area'],['requirement','Requirement','textarea'],['owner','Owner'],['status','Status','select','Active|Draft|Needs Review|Retired'],['effective','Effective Date'],['content','Standard Content','textarea']]},
+  reviewItem:{title:'Add Review Item',target:'reviews',fields:[['item','Item'],['type','Review Type','select','Refresh|Update|Approval|Archive|Ownership'],['owner','Owner'],['due','Due Date'],['status','Status','select','Open|In Review|Complete|Blocked'],['notes','Notes','textarea'],['content','Review Plan Content','textarea']]}
+};
+function normalizeData(){['templates','sops','docs','training','standards','reviews'].forEach(k=>{if(!Array.isArray(data[k]))data[k]=[]})}
+function authHeaders(){return {}}
+function setCloudStatus(text,state='bad'){const el=document.getElementById('cloudStatus');el.className='cloud-status '+state;el.querySelector('span:last-child').textContent=text}
+async function loadRemote(){if(!REMOTE_ENABLED){setCloudStatus('Configure Worker URL','bad');render();return}try{setCloudStatus('Loading cloud data','');const res=await fetch(API_BASE.replace(/\/$/,'')+'/data',{cache:'no-store'});if(!res.ok)throw new Error('Load failed');data=await res.json();normalizeData();setCloudStatus('Cloud connected','ok');render()}catch(err){setCloudStatus('Cloud load failed','bad');render();toast('Could not load cloud data',true)}}
+async function save(){if(!REMOTE_ENABLED){toast('Add your Cloudflare Worker URL first',true);return false}try{setCloudStatus('Saving','');const res=await fetch(API_BASE.replace(/\/$/,'')+'/data',{method:'PUT',headers:{'Content-Type':'application/json',...authHeaders()},body:JSON.stringify(data)});if(!res.ok)throw new Error('Save failed');setCloudStatus('Saved to GitHub','ok');return true}catch(err){setCloudStatus('Save failed','bad');toast('Cloud save failed',true);return false}}
+function badge(text){const t=(text||'').toLowerCase();let c='badge-blue';if(t.includes('active')||t.includes('complete'))c='badge-green';if(t.includes('retired')||t.includes('blocked'))c='badge-red';if(t.includes('draft')||t.includes('review')||t.includes('update')||t.includes('open'))c='badge-amber';if(t.includes('sop')||t.includes('governance')||t.includes('approval'))c='badge-purple';if(t.includes('guide')||t.includes('training')||t.includes('template'))c='badge-teal';return `<span class="badge ${c}">${text}</span>`}
+const contentTypes={templateItem:'templates',sopItem:'sops',docItem:'docs',trainingItem:'training',standardItem:'standards',reviewItem:'reviews'};
+function rowTools(type,index){const view=contentTypes[type]?`<button class="tool-btn" onclick="viewGeneratedContent('${type}',${index})">View</button>`:'';return `<div class="row-tools">${view}<button class="tool-btn" onclick="editItem('${type}',${index})">Edit</button><button class="tool-btn danger" onclick="deleteItem('${type}',${index})">Delete</button></div>`}
+function showPane(id,btn){document.querySelectorAll('.pane').forEach(p=>p.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active')}
+function render(){normalizeData();document.getElementById('todayLabel').textContent=new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'});const total=data.templates.length+data.sops.length+data.docs.length+data.training.length+data.standards.length;const reviewDue=data.reviews.filter(x=>x.status!=='Complete').length;const drafts=[...data.templates,...data.sops,...data.docs,...data.training,...data.standards].filter(x=>['Draft','Needs Review','Needs Update'].includes(x.status)).length;const activeTraining=data.training.filter(x=>x.status==='Active').length;document.getElementById('kpis').innerHTML=[['Library Items',total,'Templates, SOPs, docs, guides, standards'],['Open Reviews',reviewDue,'Need refresh or approval'],['Draft / Stale',drafts,'Need owner attention'],['Training Guides',activeTraining,'Active enablement assets']].map(k=>`<div class="kpi"><div class="kpi-label">${k[0]}</div><div class="kpi-value">${k[1]}</div><div class="kpi-sub">${k[2]}</div></div>`).join('');document.getElementById('attentionList').innerHTML=[`<strong>${reviewDue} review items</strong> are open.`,`<strong>${drafts} documents</strong> are draft, stale, or need review.`,`<strong>${activeTraining} training guides</strong> are active for PMO enablement.`].map((x,i)=>`<div class="alert ${i===0?'amber':i===1?'red':'green'}">${x}</div>`).join('');
+document.getElementById('templateRows').innerHTML=data.templates.map((r,i)=>`<tr><td><div class="td-bold">${r.name}</div><div class="td-muted">${r.content?'Generated/editable content saved':'Catalog entry'}</div></td><td>${badge(r.category)}</td><td>${r.owner}</td><td>${badge(r.status)}</td><td>${r.version}</td><td>${r.location}</td><td>${r.updated}</td><td>${rowTools('templateItem',i)}</td></tr>`).join('');
+document.getElementById('sopRows').innerHTML=data.sops.map((r,i)=>`<tr><td><div class="td-bold">${r.name}</div><div class="td-muted">${r.content?'Generated/editable content saved':'Catalog entry'}</div></td><td>${badge(r.area)}</td><td>${r.owner}</td><td>${badge(r.status)}</td><td>${r.version}</td><td>${r.cycle}</td><td>${r.location}</td><td>${rowTools('sopItem',i)}</td></tr>`).join('');
+document.getElementById('docRows').innerHTML=data.docs.map((r,i)=>`<tr><td><div class="td-bold">${r.name}</div><div class="td-muted">${r.content?'Generated/editable content saved':'Catalog entry'}</div></td><td>${badge(r.type)}</td><td>${r.audience}</td><td>${r.owner}</td><td>${badge(r.status)}</td><td>${r.location}</td><td>${r.updated}</td><td>${rowTools('docItem',i)}</td></tr>`).join('');
+document.getElementById('trainingRows').innerHTML=data.training.map((r,i)=>`<tr><td><div class="td-bold">${r.name}</div><div class="td-muted">${r.content?'Generated/editable content saved':'Catalog entry'}</div></td><td>${badge(r.format)}</td><td>${r.audience}</td><td>${r.owner}</td><td>${badge(r.status)}</td><td>${r.duration}</td><td>${r.location}</td><td>${rowTools('trainingItem',i)}</td></tr>`).join('');
+document.getElementById('standardRows').innerHTML=data.standards.map((r,i)=>`<tr><td><div class="td-bold">${r.name}</div><div class="td-muted">${r.content?'Generated/editable content saved':'Catalog entry'}</div></td><td>${badge(r.area)}</td><td>${r.requirement}</td><td>${r.owner}</td><td>${badge(r.status)}</td><td>${r.effective}</td><td>${rowTools('standardItem',i)}</td></tr>`).join('');
+document.getElementById('reviewRows').innerHTML=data.reviews.map((r,i)=>`<tr><td><div class="td-bold">${r.item}</div><div class="td-muted">${r.content?'Generated/editable content saved':'Catalog entry'}</div></td><td>${badge(r.type)}</td><td>${r.owner}</td><td>${r.due}</td><td>${badge(r.status)}</td><td>${r.notes}</td><td>${rowTools('reviewItem',i)}</td></tr>`).join('')}
+function openModal(type){activeForm=type;editingIndex=-1;const f=forms[type];document.getElementById('modalTitle').textContent=f.title;document.getElementById('modalFields').innerHTML=f.fields.map(([id,label,type='text',opts=''])=>{const cls=type==='textarea'?'field full':'field';const input=type==='textarea'?`<textarea id="mf_${id}"></textarea>`:type==='select'?`<select id="mf_${id}">${opts.split('|').map(o=>`<option>${o}</option>`).join('')}</select>`:`<input id="mf_${id}" type="${type}">`;return `<div class="${cls}"><label>${label}</label>${input}</div>`}).join('');document.getElementById('dataModal').style.display='flex'}
+function editItem(type,index){activeForm=type;const f=forms[type];const item=data[f.target][index];openModal(type);editingIndex=index;document.getElementById('modalTitle').textContent='Edit '+f.title.replace(/^Add /,'');f.fields.forEach(([id])=>{const el=document.getElementById('mf_'+id);if(el)el.value=item[id]||''})}
+async function deleteItem(type,index){const f=forms[type];const item=data[f.target][index];const label=item.name||item.item||'this entry';if(!confirm(`Delete "${label}"?`))return;const old=[...data[f.target]];data[f.target].splice(index,1);render();if(await save())toast('Entry deleted');else{data[f.target]=old;render()}}
+function closeModal(){document.getElementById('dataModal').style.display='none'}
+async function saveModal(){const f=forms[activeForm];const item={};f.fields.forEach(([id])=>{item[id]=document.getElementById('mf_'+id).value.trim()});if(!Object.values(item).some(Boolean)){toast('Add at least one value',true);return}const old=[...data[f.target]];if(editingIndex>=0)data[f.target][editingIndex]=item;else data[f.target].unshift(item);render();if(await save()){closeModal();toast(editingIndex>=0?'Entry updated':'Entry saved')}else{data[f.target]=old;render()}}
+function toast(msg,err=false){const t=document.getElementById('toast');t.textContent=msg;t.style.background=err?'#BF2600':'#0F3053';t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),2400)}
+function todayText(){return new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})}
+function categoryForTemplate(type){if(type.includes('Charter'))return'Initiation';if(type.includes('Status'))return'Reporting';if(type.includes('Closure')||type.includes('Lessons'))return'Closure';if(type.includes('Training'))return'Training';if(type.includes('Change')||type.includes('Decision'))return'Governance';return'Delivery'}
+function generateTemplate(){
+  const type=document.getElementById('builderType').value;
+  const name=document.getElementById('builderName').value.trim()||type+' Template';
+  const audience=document.getElementById('builderAudience').value.trim()||'PMO Team';
+  const owner=document.getElementById('builderOwner').value.trim()||'PMO Team';
+  const depth=document.getElementById('builderDepth').value;
+  const common=`# ${name}\n\nTemplate Type: ${type}\nAudience: ${audience}\nOwner: ${owner}\nVersion: 1.0\nLast Updated: ${todayText()}\nStatus: Draft\n\n## Purpose\nDescribe why this document exists and how it should be used.\n\n## Instructions\n- Complete every required field before submitting for review.\n- Replace guidance text with project-specific information.\n- Link supporting evidence, decisions, and approvals where applicable.\n\n`;
+  const libraries={
+    'Project Charter':['Executive Summary','Business Need','Objectives','In Scope','Out of Scope','Stakeholders','Milestones','Risks and Dependencies','Success Measures','Approvals'],
+    'Weekly Status Report':['Overall Health','Executive Summary','Completed This Period','Planned Next Period','Milestones','Risks / Issues / Decisions','Budget / Resource Notes','Help Needed'],
+    'RAID Log':['Risk Register','Assumptions','Issues','Decisions','Owners and Due Dates','Escalation Notes'],
+    'Meeting Notes':['Meeting Purpose','Attendees','Agenda','Discussion Notes','Decisions Made','Action Items','Parking Lot'],
+    'Decision Log':['Decision Needed','Options Considered','Recommendation','Decision Owner','Final Decision','Rationale','Impact','Follow-Up Actions'],
+    'Change Request':['Change Summary','Change Type','Reason for Change','Impact Assessment','Options','Recommendation','Approvals','Implementation Plan'],
+    'Project Closure':['Closure Summary','Deliverables Completed','Open Items','Support Handoff','Documentation Links','Lessons Learned','Benefits Review','Final Signoff'],
+    'Lessons Learned':['Project Context','What Worked Well','What Did Not Work','Root Causes','Recommendations','Reusable Assets','Follow-Up Actions'],
+    'Training Guide':['Learning Objective','Audience','Prerequisites','Step-by-Step Guide','Examples','Knowledge Check','Support Contacts'],
+    'Custom PMO Document':['Overview','Scope','Process','Roles and Responsibilities','Inputs and Outputs','Controls','References','Appendix']
+  };
+  let sections=libraries[type]||libraries['Custom PMO Document'];
+  if(depth==='Executive')sections=sections.filter(s=>!['Appendix','Examples','Prerequisites','Parking Lot'].includes(s));
+  if(depth==='Detailed')sections=[...sections,'Related Documents','Revision History'];
+  const body=sections.map(s=>`## ${s}\n\n[Add ${s.toLowerCase()} details here.]\n`).join('\n');
+  document.getElementById('builderPreview').value=common+body;
+  toast('Template generated');
+}
+async function saveGeneratedTemplate(){
+  const content=document.getElementById('builderPreview').value.trim();
+  if(!content){generateTemplate()}
+  const finalContent=document.getElementById('builderPreview').value.trim();
+  const type=document.getElementById('builderType').value;
+  const name=document.getElementById('builderName').value.trim()||type+' Template';
+  const item={name,category:categoryForTemplate(type),owner:document.getElementById('builderOwner').value.trim()||'PMO Team',status:'Draft',version:'1.0',location:'Generated in PMO Documentation Hub',updated:todayText(),content:finalContent};
+  const old=[...data.templates];data.templates.unshift(item);render();
+  if(await save())toast('Generated template saved');else{data.templates=old;render()}
+}
+function viewTemplate(index){
+  const item=data.templates[index];
+  openModal('templateItem');
+  editingIndex=index;
+  activeForm='templateItem';
+  document.getElementById('modalTitle').textContent='View / Edit Template Content';
+  forms.templateItem.fields.forEach(([id])=>{const el=document.getElementById('mf_'+id);if(el)el.value=item[id]||''});
+}
+const builderConfig={
+  sop:{form:'sopItem',target:'sops',preview:'sopBuilderPreview',type:'sopBuilderType',name:'sopBuilderName',audience:'sopBuilderAudience',owner:'sopBuilderOwner',depth:'sopBuilderDepth',label:'SOP',sections:{'Project Intake SOP':['Purpose','When to Use This SOP','Roles and Responsibilities','Inputs Required','Step-by-Step Procedure','Triage Criteria','Outputs','Controls','Escalation Path'],'Change Control SOP':['Purpose','Change Types','Submission Requirements','Impact Assessment','Approval Path','Implementation Steps','Communication Requirements','Evidence Required'],'Status Reporting SOP':['Purpose','Reporting Cadence','Required Inputs','Health Definitions','Submission Steps','Review Process','Escalation Rules'],'RAID Management SOP':['Purpose','RAID Definitions','Entry Criteria','Owner Responsibilities','Review Cadence','Escalation Rules','Closure Criteria'],'Project Closure SOP':['Purpose','Closure Entry Criteria','Required Artifacts','Support Handoff','Lessons Learned','Benefits Review','Final Signoff'],'Custom SOP':['Purpose','Scope','Roles and Responsibilities','Procedure','Controls','Exceptions','Revision History']}},
+  doc:{form:'docItem',target:'docs',preview:'docBuilderPreview',type:'docBuilderType',name:'docBuilderName',audience:'docBuilderAudience',owner:'docBuilderOwner',depth:'docBuilderDepth',label:'Document',sections:{'PMO Playbook':['Overview','Operating Model','Core Processes','Roles and Responsibilities','Tools and Systems','Governance Cadence','Metrics','References'],'Process Guide':['Purpose','Audience','Process Overview','Step-by-Step Instructions','Inputs and Outputs','Examples','Common Questions'],'Reference Document':['Overview','Definitions','Key Concepts','Related Processes','Decision Rules','References'],'FAQ':['Purpose','Audience','Questions and Answers','Escalation Contacts','Related Links'],'Governance Overview':['Purpose','Governance Bodies','Decision Rights','Cadence','Required Artifacts','Escalation Path'],'Custom Documentation':['Overview','Scope','Details','Examples','References','Revision History']}},
+  training:{form:'trainingItem',target:'training',preview:'trainingBuilderPreview',type:'trainingBuilderType',name:'trainingBuilderName',audience:'trainingBuilderAudience',owner:'trainingBuilderOwner',depth:'trainingBuilderDepth',label:'Training',sections:{'Training Guide':['Learning Objectives','Audience','Prerequisites','Agenda','Step-by-Step Guide','Practice Activity','Knowledge Check','Support Contacts'],'Job Aid':['Purpose','When to Use','Quick Steps','Examples','Do / Do Not','Related Links'],'Workshop Outline':['Learning Goals','Audience','Agenda','Facilitator Notes','Activities','Materials Needed','Follow-Up'],'Quick Reference':['Purpose','Key Rules','Quick Steps','Definitions','Support Contacts'],'Checklist':['Purpose','Checklist Items','Completion Criteria','Approvals','Related Documents'],'Custom Training':['Overview','Learning Objectives','Content','Activity','Knowledge Check','Resources']}},
+  standard:{form:'standardItem',target:'standards',preview:'standardBuilderPreview',type:'standardBuilderType',name:'standardBuilderName',audience:'standardBuilderAudience',owner:'standardBuilderOwner',depth:'standardBuilderDepth',label:'Standard',sections:{'Naming Standard':['Purpose','Naming Pattern','Required Elements','Examples','Exceptions','Owner','Effective Date'],'Required Fields Standard':['Purpose','Required Fields','Definitions','Validation Rules','Examples','Exceptions'],'Artifact Standard':['Purpose','Required Artifacts','Quality Criteria','Storage Location','Review Requirements'],'Review Standard':['Purpose','Review Frequency','Reviewer Role','Review Checklist','Approval Requirements'],'Governance Standard':['Purpose','Decision Rights','Required Evidence','Approval Rules','Escalation Rules'],'Custom Standard':['Purpose','Requirement','Scope','Rules','Examples','Exceptions']}},
+  review:{form:'reviewItem',target:'reviews',preview:'reviewBuilderPreview',type:'reviewBuilderType',name:'reviewBuilderName',audience:'reviewBuilderAudience',owner:'reviewBuilderOwner',depth:'reviewBuilderDepth',label:'Review Plan',sections:{'Refresh Review':['Purpose','Item Under Review','Current State','Required Updates','Review Checklist','Approval Needed','Next Steps'],'Approval Review':['Purpose','Approval Item','Approval Criteria','Reviewer Instructions','Decision Options','Follow-Up Actions'],'Archive Review':['Purpose','Archive Candidate','Reason for Archive','Impact Check','Archive Location','Communication Plan'],'Ownership Review':['Purpose','Current Owner','Proposed Owner','Responsibilities','Transition Steps','Confirmation'],'Quality Review':['Purpose','Quality Criteria','Review Checklist','Findings','Required Fixes','Signoff'],'Custom Review':['Purpose','Scope','Checklist','Findings','Actions','Decision']}}
+};
+function generateDoc(kind){
+  const cfg=builderConfig[kind];
+  const type=document.getElementById(cfg.type).value;
+  const name=document.getElementById(cfg.name).value.trim()||'New PMO '+cfg.label;
+  const audience=document.getElementById(cfg.audience).value.trim()||'PMO Team';
+  const owner=document.getElementById(cfg.owner).value.trim()||'PMO Team';
+  const depth=document.getElementById(cfg.depth).value;
+  let sections=cfg.sections[type]||cfg.sections[Object.keys(cfg.sections)[0]];
+  if(depth==='Executive')sections=sections.filter(s=>!['Examples','Revision History','Related Links','Materials Needed','Exceptions'].includes(s));
+  if(depth==='Detailed')sections=[...sections,'Related Documents','Revision History'];
+  const header=`# ${name}\n\nDocument Type: ${type}\nAudience: ${audience}\nOwner: ${owner}\nVersion: 1.0\nLast Updated: ${todayText()}\nStatus: Draft\n\n## Purpose\nDescribe what this ${cfg.label.toLowerCase()} is for and how it should be used.\n\n`;
+  document.getElementById(cfg.preview).value=header+sections.map(s=>`## ${s}\n\n[Add ${s.toLowerCase()} details here.]\n`).join('\n');
+  toast(cfg.label+' generated');
+}
+function generatedItem(kind, content){
+  const cfg=builderConfig[kind];
+  const type=document.getElementById(cfg.type).value;
+  const name=document.getElementById(cfg.name).value.trim()||'New PMO '+cfg.label;
+  const owner=document.getElementById(cfg.owner).value.trim()||'PMO Team';
+  const audience=document.getElementById(cfg.audience).value.trim()||'PMO Team';
+  if(kind==='sop')return {name,area:type.replace(' SOP',''),owner,status:'Draft',version:'1.0',cycle:'Quarterly',location:'Generated in PMO Documentation Hub',content};
+  if(kind==='doc')return {name,type:type.replace('PMO ',''),audience,owner,status:'Draft',location:'Generated in PMO Documentation Hub',updated:todayText(),content};
+  if(kind==='training')return {name,format:type.replace(' Training',''),audience,owner,status:'Draft',duration:'TBD',location:'Generated in PMO Documentation Hub',content};
+  if(kind==='standard')return {name,area:type.replace(' Standard',''),requirement:'Generated standard requires PMO review before activation',owner,status:'Draft',effective:todayText(),content};
+  return {item:name,type:type.replace(' Review',''),owner,due:todayText(),status:'Open',notes:'Generated review plan requires scheduling',content};
+}
+async function saveGeneratedDoc(kind){
+  const cfg=builderConfig[kind];
+  if(!document.getElementById(cfg.preview).value.trim())generateDoc(kind);
+  const content=document.getElementById(cfg.preview).value.trim();
+  const old=[...data[cfg.target]];
+  data[cfg.target].unshift(generatedItem(kind,content));
+  render();
+  if(await save())toast('Generated '+cfg.label.toLowerCase()+' saved');else{data[cfg.target]=old;render()}
+}
+function viewGeneratedContent(type,index){
+  const f=forms[type];
+  const item=data[f.target][index];
+  openModal(type);
+  editingIndex=index;
+  activeForm=type;
+  document.getElementById('modalTitle').textContent='View / Edit Saved Content';
+  f.fields.forEach(([id])=>{const el=document.getElementById('mf_'+id);if(el)el.value=item[id]||''});
+}
+document.getElementById('dataModal').addEventListener('click',e=>{if(e.target.id==='dataModal')closeModal()});
+generateTemplate();
+['sop','doc','training','standard','review'].forEach(generateDoc);
+loadRemote();
+</script>
+</body>
+</html>
